@@ -1,6 +1,6 @@
-/* eslint-disable no-underscore-dangle,react/jsx-no-bind,camelcase,react/destructuring-assignment,react/no-access-state-in-setstate,react/prop-types */
+/* eslint-disable no-underscore-dangle,react/jsx-no-bind,camelcase,react/destructuring-assignment,react/no-access-state-in-setstate,react/prop-types,prefer-destructuring */
 import React, { Component } from "react";
-import { Button, Form, Icon, Label, Menu, Modal, Table } from "semantic-ui-react";
+import { Button, Form, Icon, Label, Modal, Table } from "semantic-ui-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -140,8 +140,10 @@ class ListProcese extends Component {
             <Button positive
                     onClick={this.editProcesModal.bind(this, proces._id, proces.serie, proces.numar, proces.data_proces, proces.marca, proces.contravenient, proces.adresa, proces.localitate, proces.suma, proces.mod_intocmire, proces.platit, proces.numar_chitanta, proces.data_chitanta, proces.suma_chitanta)}>
               Editeaza</Button>
-            <Button negative
+            {/*
+              <Button negative
                     onClick={() => window.confirm("Esti sigur ca stergi?") && this.deleteProces(proces._id)}> Sterge </Button>
+            */}
           </Table.Cell>
         </Table.Row>
       );

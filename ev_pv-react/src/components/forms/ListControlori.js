@@ -116,6 +116,7 @@ class ListProcese extends Component {
             <Table.Row>
               <Table.HeaderCell>Marca</Table.HeaderCell>
               <Table.HeaderCell>Nume</Table.HeaderCell>
+              <Table.HeaderCell>Actiuni</Table.HeaderCell>
             </Table.Row>
           </Table.Header>
           <Table.Body>

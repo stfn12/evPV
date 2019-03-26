@@ -25,10 +25,11 @@ class NewProcesForm extends React.Component {
     errors: {}
   };
 
-  onChange = e =>{
+  onChange = e => {
     this.setState({
       data: { ...this.state.data, [e.target.name]: e.target.value }
-    })};
+    });
+  };
 
   onSubmit = e => {
     e.preventDefault();
@@ -53,6 +54,7 @@ class NewProcesForm extends React.Component {
 
   render() {
     const { data, errors, loading } = this.state;
+    console.log(errors);
 
     return (
       <Form onSubmit={this.onSubmit} loading={loading}>
@@ -198,8 +200,8 @@ class NewProcesForm extends React.Component {
                  onChange={this.onChange}/>
           {errors.suma_chitanta && <InlineError text={errors.suma_chitanta}/>}
         </Form.Field>
-
         <Button icon labelPosition='right' primary><Icon name='plus square outline' size='big'/>Adauga</Button>
+        {errors.global && window.alert(errors.global)}
       </Form>
     );
   }

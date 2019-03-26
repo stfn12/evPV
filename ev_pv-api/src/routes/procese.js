@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   await Pv.create(req.body.proces)
     .then(proces => res.json({ proces }))
-    .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
+    .catch(err => res.status(400).json({ errors: { global: "Serie si numar existente" } }));
 });
 
 router.put("/:id", async (req, res) => {

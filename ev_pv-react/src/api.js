@@ -11,6 +11,8 @@ export default {
       axios.get(`api/procese`).then(res => res.data.procese),
     getProceseDate: (data) =>
       axios.get(`api/procese/?from=${data.startDate}&&to=${data.endDate}`).then(res => res.data.procese),
+    getProceseName: (name) =>
+      axios.get(`api/procese/?name=${name}`).then(res => res.data.procese),
     editProces: proces =>
       axios.put("/api/procese/:id", { proces }).then(res => res.data.proces),
     deleteProces: (id) =>

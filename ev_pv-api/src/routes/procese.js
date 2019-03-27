@@ -7,7 +7,12 @@ import parseErrors from "../parseError";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  if (req.query.from === undefined || _.isEmpty(req.query)) {
+  if (req.query.name !== undefined) {
+    await Pv.find({contravenient: {'$regex': req.query.name, '$options': 'i'}}).exec()
+      .then(procese => res.json({ procese }))
+      .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
+  }
+  else if (req.query.from === undefined || _.isEmpty(req.query)) {
     await Pv.find().sort({ data_proces: -1 }).exec()
       .then(procese => res.json({ procese }))
       .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));

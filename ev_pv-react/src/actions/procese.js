@@ -29,6 +29,9 @@ export const getProcese = () => (dispatch) =>
 export const getProceseDate = (data) => (dispatch) =>
   api.proces.getProceseDate(data).then(procese => dispatch(proceseFetched(procese)));
 
+export const getProceseName = (name) => (dispatch) =>
+  api.proces.getProceseName(name).then(procese => dispatch(proceseFetched(procese)));
+
 export const editProces = (data) => (dispatch) =>
   api.proces.editProces(data).then(proces => dispatch(procesEdited(proces)));
 

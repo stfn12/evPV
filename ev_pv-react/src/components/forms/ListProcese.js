@@ -5,7 +5,7 @@ import moment from "moment";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ReactExport from "react-data-export";
-import { getProcese, editProces, deleteProces, getProceseDate } from "../../actions/procese";
+import { getProcese, editProces, deleteProces, getProceseDate, getProceseName } from "../../actions/procese";
 import InlineError from "../messages/InlineError";
 
 const ExcelFile = ReactExport.ExcelFile;
@@ -35,7 +35,8 @@ class ListProcese extends Component {
       suma_chitanta: ""
     },
     startDate: null,
-    endDate: null
+    endDate: null,
+    query: ""
   };
 
   componentWillMount() {
@@ -44,8 +45,13 @@ class ListProcese extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ loading: true, startDate: nextProps.startDate, endDate: nextProps.endDate });
-    const { startDate, endDate } = this.state;
+    this.setState({
+      loading: true,
+      startDate: nextProps.startDate,
+      endDate: nextProps.endDate,
+      query: nextProps.query
+    });
+    const { startDate, endDate, query } = this.state;
     if ((nextProps.startDate === null || nextProps.endDate === null) && startDate !== nextProps.startDate) {
       this.props.getProcese()
         .then(data => this.setState({ procese: data.procese, loading: false }));
@@ -53,6 +59,10 @@ class ListProcese extends Component {
     else if (startDate !== nextProps.startDate || endDate !== nextProps.endDate) {
       const date = { startDate: nextProps.startDate, endDate: nextProps.endDate };
       this.props.getProceseDate(date)
+        .then(data => this.setState({ procese: data.procese, loading: false }));
+    }
+    else if (query !== nextProps.query) {
+      this.props.getProceseName(nextProps.query)
         .then(data => this.setState({ procese: data.procese, loading: false }));
     }
   }
@@ -118,7 +128,7 @@ class ListProcese extends Component {
   };
 
   render() {
-    let { procese } = this.state;
+    let { procese } = this.props;
     const process = procese;
     const { loading, errors, open, editProcesData } = this.state;
     if (loading)
@@ -348,4 +358,10 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { getProcese, editProces, deleteProces, getProceseDate })(ListProcese);
+export default connect(mapStateToProps, {
+  getProcese,
+  editProces,
+  deleteProces,
+  getProceseDate,
+  getProceseName
+})(ListProcese);

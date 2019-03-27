@@ -29,6 +29,11 @@ class ProcesePage extends Component {
     this.setState({ startDate: null, endDate: null });
   };
 
+  onClickSearch = () => {
+    // window.location.reload();
+    this.setState({ query: "" });
+  };
+
   onSearchChange = (e, data) => {
     clearTimeout(this.timer);
     this.setState({
@@ -53,7 +58,7 @@ class ProcesePage extends Component {
         text: `${proces.contravenient} ${data} ${proces.adresa}`
       });
     });
-    this.setState({ loading: false, options});
+    this.setState({ loading: false, options });
   };
 
   render() {
@@ -79,6 +84,8 @@ class ProcesePage extends Component {
             loading={loading}
             onChange={this.onChangeQuery}
           />
+          <Divider/>
+          <Button onClick={this.onClickSearch}>Reset</Button>
         </Segment>
         <ListProcese startDate={startDate} endDate={endDate} query={query}/>
       </div>

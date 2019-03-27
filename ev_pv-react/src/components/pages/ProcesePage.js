@@ -20,7 +20,7 @@ class ProcesePage extends Component {
   };
 
   onClick = () => {
-    window.location.reload();
+    // window.location.reload();
     this.setState({ startDate: null, endDate: null });
   };
 

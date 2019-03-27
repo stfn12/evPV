@@ -27,7 +27,6 @@ class ListProcese extends Component {
       marca: "",
       contravenient: "",
       adresa: "",
-      localitate: "",
       suma: "",
       mod_intocmire: "",
       platit: "",
@@ -97,7 +96,7 @@ class ListProcese extends Component {
 
   close = () => this.setState({ open: false });
 
-  editProcesModal = (_id, serie, numar, data_proces, marca, contravenient, adresa, localitate, suma, mod_intocmire, platit, numar_chitanta, data_chitanta, suma_chitanta) => {
+  editProcesModal = (_id, serie, numar, data_proces, marca, contravenient, adresa, suma, mod_intocmire, platit, numar_chitanta, data_chitanta, suma_chitanta) => {
     this.show();
     this.setState({
       editProcesData: {
@@ -108,7 +107,6 @@ class ListProcese extends Component {
         marca,
         contravenient,
         adresa,
-        localitate,
         suma,
         mod_intocmire,
         platit,
@@ -134,11 +132,12 @@ class ListProcese extends Component {
           <Table.Cell>{moment(proces.data_proces).format("DD/MM/YYYY")}</Table.Cell>
           <Table.Cell>{proces.marca}</Table.Cell>
           <Table.Cell>{proces.contravenient}</Table.Cell>
+          <Table.Cell>{proces.adresa}</Table.Cell>
           <Table.Cell>{proces.suma}</Table.Cell>
           <Table.Cell>{proces.platit}</Table.Cell>
           <Table.Cell>
             <Button positive
-                    onClick={this.editProcesModal.bind(this, proces._id, proces.serie, proces.numar, proces.data_proces, proces.marca, proces.contravenient, proces.adresa, proces.localitate, proces.suma, proces.mod_intocmire, proces.platit, proces.numar_chitanta, proces.data_chitanta, proces.suma_chitanta)}>
+                    onClick={this.editProcesModal.bind(this, proces._id, proces.serie, proces.numar, proces.data_proces, proces.marca, proces.contravenient, proces.adresa, proces.suma, proces.mod_intocmire, proces.platit, proces.numar_chitanta, proces.data_chitanta, proces.suma_chitanta)}>
               Editeaza</Button>
             {/*
               <Button negative
@@ -160,7 +159,6 @@ class ListProcese extends Component {
             <ExcelColumn label="Marca" value="marca"/>
             <ExcelColumn label="Contravenient" value="contravenient"/>
             <ExcelColumn label="Adresa" value="adresa"/>
-            <ExcelColumn label="Mod solutionare" value="localitate"/>
             <ExcelColumn label="Suma" value="suma"/>
             <ExcelColumn label="Mod intocmire" value="mod_intocmire"/>
             <ExcelColumn label="Platit" value="platit"/>
@@ -178,6 +176,7 @@ class ListProcese extends Component {
               <Table.HeaderCell>Data</Table.HeaderCell>
               <Table.HeaderCell>Controlor</Table.HeaderCell>
               <Table.HeaderCell>Contravenient</Table.HeaderCell>
+              <Table.HeaderCell>Adresa</Table.HeaderCell>
               <Table.HeaderCell>Suma</Table.HeaderCell>
               <Table.HeaderCell>Platit</Table.HeaderCell>
               <Table.HeaderCell>Actiuni</Table.HeaderCell>
@@ -241,7 +240,7 @@ class ListProcese extends Component {
                 <input type="text"
                        id="contravenient"
                        name="contravenient"
-                       placeholder="contravenient"
+                       placeholder="nume contravenient"
                        value={editProcesData.contravenient || ""}
                        onChange={this.onChange}/>
                 {errors.contravenient && <InlineError text={errors.contravenient}/>}
@@ -256,17 +255,6 @@ class ListProcese extends Component {
                        value={editProcesData.adresa || ""}
                        onChange={this.onChange}/>
                 {errors.adresa && <InlineError text={errors.adresa}/>}
-              </Form.Field>
-
-              <Form.Field error={!!errors.localitate}>
-                <Label htmlFor="localitate">Mod solutionare</Label>
-                <input type="text"
-                       id="localitate"
-                       name="localitate"
-                       placeholder="iasi / alta localitate"
-                       value={editProcesData.localitate || ""}
-                       onChange={this.onChange}/>
-                {errors.localitate && <InlineError text={errors.localitate}/>}
               </Form.Field>
 
               <Form.Field error={!!errors.suma}>

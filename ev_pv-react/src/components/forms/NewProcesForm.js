@@ -13,7 +13,6 @@ class NewProcesForm extends React.Component {
       marca: "",
       contravenient: "",
       adresa: "",
-      localitate: "",
       suma: "",
       mod_intocmire: "",
       platit: "",
@@ -54,7 +53,6 @@ class NewProcesForm extends React.Component {
 
   render() {
     const { data, errors, loading } = this.state;
-    console.log(errors);
 
     return (
       <Form onSubmit={this.onSubmit} loading={loading}>
@@ -85,7 +83,6 @@ class NewProcesForm extends React.Component {
           <input type="date"
                  id="data_proces"
                  name="data_proces"
-                 placeholder="data"
                  value={data.data_proces}
                  onChange={this.onChange}/>
           {errors.data_proces && <InlineError text={errors.data_proces}/>}
@@ -107,7 +104,7 @@ class NewProcesForm extends React.Component {
           <input type="text"
                  id="contravenient"
                  name="contravenient"
-                 placeholder="contravenient"
+                 placeholder="nume contravenient"
                  value={data.contravenient}
                  onChange={this.onChange}/>
           {errors.contravenient && <InlineError text={errors.contravenient}/>}
@@ -124,20 +121,9 @@ class NewProcesForm extends React.Component {
           {errors.adresa && <InlineError text={errors.adresa}/>}
         </Form.Field>
 
-        <Form.Field error={!!errors.localitate}>
-          <Label htmlFor="localitate">Mod solutionare</Label>
-          <input type="text"
-                 id="localitate"
-                 name="localitate"
-                 placeholder="iasi / alta localitate"
-                 value={data.localitate}
-                 onChange={this.onChange}/>
-          {errors.localitate && <InlineError text={errors.localitate}/>}
-        </Form.Field>
-
         <Form.Field error={!!errors.suma}>
           <Label htmlFor="suma">Suma</Label>
-          <input type="number"
+          <input type="text"
                  id="suma"
                  name="suma"
                  placeholder="suma"
@@ -151,7 +137,7 @@ class NewProcesForm extends React.Component {
           <input type="text"
                  id="mod_intocmire"
                  name="mod_intocmire"
-                 placeholder="mod intocmire"
+                 placeholder="direct / refuz / lipsa"
                  value={data.mod_intocmire}
                  onChange={this.onChange}/>
           {errors.mod_intocmire && <InlineError text={errors.mod_intocmire}/>}
@@ -201,7 +187,7 @@ class NewProcesForm extends React.Component {
           {errors.suma_chitanta && <InlineError text={errors.suma_chitanta}/>}
         </Form.Field>
         <Button icon labelPosition='right' primary><Icon name='plus square outline' size='big'/>Adauga</Button>
-        {errors.global && window.alert(errors.global)}
+        {errors.global && <InlineError text={errors.global}/>}
       </Form>
     );
   }

@@ -7,7 +7,6 @@ const schema = new mongoose.Schema({
   marca: { type: String, required: true, createIndex: true },
   contravenient: { type: String, required: true, createIndex: true },
   adresa: { type: String },
-  localitate: { type: String},
   suma: { type: String },
   mod_intocmire: { type: String },
   platit: { type: String },

@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
   }
   else if (req.query.from !== "undefined" || req.query.from !== null) {
     await Pv.find({ data_proces: { $gte: req.query.from, $lte: req.query.to } })
-      .sort({ data_proces: -1 }).exec()
+      .sort({ data_proces: -1, numar: 1 }).exec()
       .then(procese => res.json({ procese }))
       .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
   }

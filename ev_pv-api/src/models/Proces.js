@@ -12,7 +12,8 @@ const schema = new mongoose.Schema({
   platit: { type: String },
   numar_chitanta: { type: String },
   data_chitanta: { type: Date },
-  suma_chitanta: { type: String }
+  suma_chitanta: { type: String },
+  ascuns: { type: Number }
 }, { timestamps: true });
 
 export default mongoose.model("Pv", schema);

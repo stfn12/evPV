@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle,react/jsx-no-bind,camelcase,react/destructuring-assignment,react/no-access-state-in-setstate,react/prop-types,prefer-destructuring */
 import React, { Component } from "react";
-import { Button, Form, Icon, Label, Modal, Table } from "semantic-ui-react";
+import { Button, Form, Icon, Label, Modal, Segment, Table } from "semantic-ui-react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -36,7 +36,8 @@ class ListProcese extends Component {
     },
     startDate: null,
     endDate: null,
-    query: ""
+    query: "",
+    count: 0
   };
 
   componentWillMount() {
@@ -130,6 +131,7 @@ class ListProcese extends Component {
   render() {
     let { procese } = this.props;
     const process = procese;
+    const count = process.length;
     const { loading, errors, open, editProcesData } = this.state;
     if (loading)
       return (<div/>);
@@ -178,6 +180,7 @@ class ListProcese extends Component {
           </ExcelSheet>
         </ExcelFile>
 
+        <Segment><div>Numar procese: {count}</div></Segment>
         <Table celled compact selectable>
           <Table.Header>
             <Table.Row>

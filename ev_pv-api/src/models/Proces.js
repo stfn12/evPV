@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const schema = new mongoose.Schema({
   serie: { type: String, required: true, uppercase: true, createIndex: true },
-  numar: { type: String, required: true },
+  numar: { type: Number, required: true },
   data_proces: { type: Date },
   marca: { type: String, required: true, createIndex: true },
   contravenient: { type: String, required: true, createIndex: true },

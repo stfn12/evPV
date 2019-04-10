@@ -69,7 +69,7 @@ class NewProcesForm extends React.Component {
 
         <Form.Field error={!!errors.numar}>
           <Label htmlFor="numar">Numar</Label>
-          <input type="text"
+          <input type="number"
                  id="numar"
                  name="numar"
                  placeholder="numar"

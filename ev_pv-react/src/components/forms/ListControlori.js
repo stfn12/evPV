@@ -130,7 +130,7 @@ class ListProcese extends Component {
             <Form>
               <Form.Field error={!!errors.marca}>
                 <Label htmlFor="marca">Marca</Label>
-                <input type="text"
+                <input type="number"
                        id="marca"
                        name="marca"
                        placeholder="marca"

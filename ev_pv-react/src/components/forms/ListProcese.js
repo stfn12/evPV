@@ -151,10 +151,10 @@ class ListProcese extends Component {
             <Button positive
                     onClick={this.editProcesModal.bind(this, proces._id, proces.serie, proces.numar, proces.data_proces, proces.marca, proces.contravenient, proces.adresa, proces.suma, proces.mod_intocmire, proces.platit, proces.numar_chitanta, proces.data_chitanta, proces.suma_chitanta)}>
               Editeaza</Button>
-            {/*
-              <Button negative
+
+            <Button negative
                     onClick={() => window.confirm("Esti sigur ca stergi?") && this.deleteProces(proces._id)}> Sterge </Button>
-            */}
+
           </Table.Cell>
         </Table.Row>
       );
@@ -180,7 +180,9 @@ class ListProcese extends Component {
           </ExcelSheet>
         </ExcelFile>
 
-        <Segment><div>Numar procese: {count}</div></Segment>
+        <Segment>
+          <div>Numar procese: {count}</div>
+        </Segment>
         <Table celled compact selectable>
           <Table.Header>
             <Table.Row>

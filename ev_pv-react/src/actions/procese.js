@@ -35,5 +35,5 @@ export const getProceseName = (name) => (dispatch) =>
 export const editProces = (data) => (dispatch) =>
   api.proces.editProces(data).then(proces => dispatch(procesEdited(proces)));
 
-export const deleteProces = (id) => (dispatch) =>
-  api.proces.deleteProces(id).then(dispatch(procesDeleted()));
+export const deleteProces = (data) => (dispatch) =>
+  api.proces.deleteProces(data).then(dispatch(procesDeleted()));

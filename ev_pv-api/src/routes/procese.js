@@ -8,17 +8,17 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   if (req.query.name !== undefined) {
-    await Pv.find({contravenient: {'$regex': req.query.name, '$options': 'i'}}).exec()
+    await Pv.find({ contravenient: { "$regex": req.query.name, "$options": "i" }, ascuns: { $ne: 1 } }).exec()
       .then(procese => res.json({ procese }))
       .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
   }
   else if (req.query.from === undefined || _.isEmpty(req.query)) {
-    await Pv.find().sort({ data_proces: -1, numar: 1 }).exec()
+    await Pv.find({ ascuns: { $ne: 1 } }).sort({ data_proces: -1, numar: 1 }).exec()
       .then(procese => res.json({ procese }))
       .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
   }
   else if (req.query.from !== "undefined" || req.query.from !== null) {
-    await Pv.find({ data_proces: { $gte: req.query.from, $lte: req.query.to } })
+    await Pv.find({ data_proces: { $gte: req.query.from, $lte: req.query.to }, ascuns: { $ne: 1 } })
       .sort({ data_proces: -1, numar: 1 }).exec()
       .then(procese => res.json({ procese }))
       .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
@@ -39,7 +39,7 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  await Pv.findOneAndDelete({ _id: req.params.id })
+  await Pv.findOneAndUpdate({ _id: req.params.id }, { ascuns: 1 })
     .catch(err => res.status(400).json({ errors: parseErrors(err.errors) }));
 });
 

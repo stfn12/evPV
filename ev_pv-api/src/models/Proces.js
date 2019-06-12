@@ -13,7 +13,7 @@ const schema = new mongoose.Schema({
   numar_chitanta: { type: String },
   data_chitanta: { type: Date },
   suma_chitanta: { type: String },
-  ascuns: { type: Number }
+  ascuns: { type: Number, default: 0 }
 }, { timestamps: true });
 
 export default mongoose.model("Pv", schema);
